@@ -94,6 +94,32 @@ public class SinglyLinkedList<listType> {
         }
     }
     
+    
+    func remove(at position: Int) {
+        if head == nil {
+            return
+        }
+        
+        var h = head
+        if (position == 0) {
+            head = h?.next
+            return
+        }
+        
+        for _ in 0..<position - 1 where h != nil {
+            h = h?.next
+        }
+        
+        if h == nil || h?.next == nil {
+            return
+        }
+        
+        let nextToNextNode = h?.next?.next
+        h?.next = nextToNextNode
+        
+    }
+    
+    
 }
 
 extension SinglyLinkedList: CustomStringConvertible {
@@ -129,4 +155,15 @@ print("3 has been added to index 2: \(newList)")
 newList.insert(value: 5, index: 4)
 print("5 has been added to index 4: \(newList)")
 
+// Removing and removed at
+print("newList: \(newList)")
+
+newList.remove(at: 2)
+print("Index 2 is removed: \(newList)")
+
+newList.remove(at: 0)
+print("Index 0 is removed: \(newList)")
+
+newList.removeLast()
+print("Last removed: \(newList)")
 
